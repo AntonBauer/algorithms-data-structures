@@ -22,6 +22,12 @@ public class SinglyLinkedList<TData> : IEnumerable<TData>
     ++Count;
   }
 
+  public void Clear()
+  {
+    _head = null;
+    Count = 0;
+  }
+
   public IEnumerator<TData> GetEnumerator()
   {
     var current = _head;
