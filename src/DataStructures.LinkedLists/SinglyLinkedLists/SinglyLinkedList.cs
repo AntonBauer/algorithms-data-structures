@@ -2,6 +2,8 @@
 
 namespace DataStructures.LinkedLists.SinglyLinkedLists;
 
+// https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ilist-1?view=net-8.0
+
 public class SinglyLinkedList<TData> : IEnumerable<TData>
 {
   private Node<TData>? _head;
