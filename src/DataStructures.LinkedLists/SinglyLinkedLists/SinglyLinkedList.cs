@@ -5,16 +5,22 @@ namespace DataStructures.LinkedLists.SinglyLinkedLists;
 public class SinglyLinkedList<TData> : IEnumerable<TData>
 {
   private Node<TData>? _head;
+  public uint Count { get; private set; }
 
   public SinglyLinkedList()
   {
     _head = null;
+    Count = 0;
   }
 
-  public void Add(TData value) =>
+  public void Add(TData value)
+  {
     _head = _head is null
       ? new Node<TData>(value, null)
       : new Node<TData>(value, _head);
+    
+    ++Count;
+  }
 
   public IEnumerator<TData> GetEnumerator()
   {
