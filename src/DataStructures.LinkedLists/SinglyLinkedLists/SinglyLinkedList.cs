@@ -22,6 +22,23 @@ public class SinglyLinkedList<TData> : IEnumerable<TData>
     Count = 0;
   }
 
+  public bool Contains(TData item)
+  {
+    if (Count == 0)
+      return false;
+    
+    var current = _head;
+    while (current is not null)
+    {
+      if (current.Data?.Equals(item) ?? false)
+        return true;
+
+      current = current.Next;
+    }
+
+    return false;
+  }
+
   public IEnumerator<TData> GetEnumerator()
   {
     var current = _head;
