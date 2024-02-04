@@ -7,12 +7,6 @@ public class SinglyLinkedList<TData> : IEnumerable<TData>
   private Node<TData>? _head;
   public uint Count { get; private set; }
 
-  public SinglyLinkedList()
-  {
-    _head = null;
-    Count = 0;
-  }
-
   public void Add(TData value)
   {
     _head = _head is null
