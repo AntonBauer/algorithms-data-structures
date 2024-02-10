@@ -2,12 +2,19 @@
 
 namespace DataStructures.LinkedLists.SinglyLinkedLists;
 
-// https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ilist-1?view=net-8.0
-
-public class SinglyLinkedList<TData> : IEnumerable<TData>
+public class SinglyLinkedList<TData> : IList<TData>
 {
   private Node<TData>? _head;
-  public uint Count { get; private set; }
+
+  public int Count { get; private set; }
+
+  public bool IsReadOnly => false;
+  
+  public TData this[int index]
+  {
+    get => throw new NotImplementedException();
+    set => throw new NotImplementedException();
+  }
 
   public void Add(TData value)
   {
@@ -18,6 +25,34 @@ public class SinglyLinkedList<TData> : IEnumerable<TData>
     ++Count;
   }
 
+  public bool Remove(TData item)
+  {
+    if (Count == 0)
+      return false;
+
+    if (_head!.Data?.Equals(item) ?? false)
+    {
+      _head = _head.Next;
+      return true;
+    }
+    
+    var current = _head.Next;
+    var previous = _head;
+    while (current is not null)
+    {
+      if (current.Data?.Equals(item) ?? false)
+      {
+        previous.Next = current.Next;
+        return true;
+      }
+
+      previous = current;
+      current = current.Next;
+    }
+
+    return false;
+  }
+  
   public void Clear()
   {
     _head = null;
@@ -44,7 +79,23 @@ public class SinglyLinkedList<TData> : IEnumerable<TData>
 
     return -1;
   }
-    
+
+  public void Insert(int index, TData item)
+  {
+    throw new NotImplementedException();
+  }
+
+  public void RemoveAt(int index)
+  {
+    throw new NotImplementedException();
+  }
+
+
+  public void CopyTo(TData[] array, int arrayIndex)
+  {
+    throw new NotImplementedException();
+  }
+  
   public IEnumerator<TData> GetEnumerator()
   {
     var current = _head;
