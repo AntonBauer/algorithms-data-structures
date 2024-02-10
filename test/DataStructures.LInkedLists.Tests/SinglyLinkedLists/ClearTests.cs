@@ -41,9 +41,11 @@ public class ClearTests
   public void ClearNonEmptyList()
   {
     // Arrange
-    var list = new SinglyLinkedList<int>();
-    list.Add(1);
-    list.Add(2);
+    var list = new SinglyLinkedList<int>
+    {
+      1,
+      2
+    };
 
     // Act
     list.Clear();

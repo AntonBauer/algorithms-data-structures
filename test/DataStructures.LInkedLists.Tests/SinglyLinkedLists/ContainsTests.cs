@@ -26,9 +26,11 @@ public class ContainsTests
   public void ListContainsInsertedItemTest()
   {
     // Arrange
-    var list = new SinglyLinkedList<int>();
-    list.Add(42);
-    list.Add(43);
+    var list = new SinglyLinkedList<int>
+    {
+      42,
+      43
+    };
 
     // Act
     var actual = list.Contains(42);
@@ -43,9 +45,11 @@ public class ContainsTests
   public void ListDoesNotContainNotInsertedItemTest()
   {
     // Arrange
-    var list = new SinglyLinkedList<int>();
-    list.Add(42);
-    list.Add(43);
+    var list = new SinglyLinkedList<int>
+    {
+      42,
+      43
+    };
 
     // Act
     var actual = list.Contains(24);

@@ -27,10 +27,12 @@ public class CountTests
   public void ListHasCorrectCountAfterAddTest()
   {
     // Arrange
-    var list = new SinglyLinkedList<int>();
-    list.Add(1);
-    list.Add(2);
-    
+    var list = new SinglyLinkedList<int>
+    {
+      1,
+      2
+    };
+
     // Act
     var actual = list.Count;
     

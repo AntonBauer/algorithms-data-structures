@@ -41,6 +41,25 @@ public class SinglyLinkedList<TData> : IEnumerable<TData>
     return false;
   }
 
+  public int IndexOf(TData item)
+  {
+    if (Count == 0)
+      return -1;
+    
+    var currentIndex = 0;
+    var currentItem = _head;
+    while (currentItem is not null)
+    {
+      if (currentItem.Data?.Equals(item) ?? false)
+        return currentIndex;
+
+      ++currentIndex;
+      currentItem = currentItem.Next;
+    }
+
+    return -1;
+  }
+    
   public IEnumerator<TData> GetEnumerator()
   {
     var current = _head;
