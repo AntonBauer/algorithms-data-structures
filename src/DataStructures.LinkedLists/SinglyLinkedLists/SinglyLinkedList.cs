@@ -47,6 +47,7 @@ public class SinglyLinkedList<TData> : IList<TData>
     if (_head!.Data?.Equals(item) ?? false)
     {
       _head = _head.Next;
+      --Count;
       return true;
     }
     
@@ -57,6 +58,7 @@ public class SinglyLinkedList<TData> : IList<TData>
       if (current.Data?.Equals(item) ?? false)
       {
         previous.Next = current.Next;
+        --Count;
         return true;
       }
 
