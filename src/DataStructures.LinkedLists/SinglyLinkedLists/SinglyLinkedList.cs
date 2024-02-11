@@ -12,8 +12,22 @@ public class SinglyLinkedList<TData> : IList<TData>
   
   public TData this[int index]
   {
-    get => throw new NotImplementedException();
-    set => throw new NotImplementedException();
+    get
+    {
+      if (index < 0 || index >= Count)
+        throw new ArgumentOutOfRangeException(nameof(index), index, "Index is out of range");
+
+      var currentIndex = 0;
+      var currentItem = _head;
+      while (currentIndex < index)
+      {
+        currentItem = currentItem!.Next;
+        ++currentIndex;
+      }
+      
+      return currentItem!.Data;
+    }
+    set => Insert(index, value);
   }
 
   public void Add(TData value)
@@ -59,7 +73,7 @@ public class SinglyLinkedList<TData> : IList<TData>
     Count = 0;
   }
 
-  public bool Contains(TData item) => IndexOf(item) > 0;
+  public bool Contains(TData item) => IndexOf(item) >= 0;
 
   public int IndexOf(TData item)
   {
@@ -82,14 +96,37 @@ public class SinglyLinkedList<TData> : IList<TData>
 
   public void Insert(int index, TData item)
   {
-    throw new NotImplementedException();
+    if (IsOutOfRange(index))
+      throw new ArgumentOutOfRangeException(nameof(index), index, "Index is out of range");
+
+    if (index == 0)
+    {
+      Add(item);
+      return;
+    }
+    
+    var current = _head;
+    var currentIndex = 0;
+
+    while (currentIndex + 1 < index)
+    {
+      current = current!.Next;
+      ++currentIndex;
+    }
+
+    var newNode = new Node<TData>(item, current!.Next);
+    current.Next = newNode;
+    ++Count;
   }
 
   public void RemoveAt(int index)
   {
+    if (IsOutOfRange(index))
+      throw new ArgumentOutOfRangeException(nameof(index), index, "Index is out of range");
+
+    --Count;
     throw new NotImplementedException();
   }
-
 
   public void CopyTo(TData[] array, int arrayIndex)
   {
@@ -107,4 +144,6 @@ public class SinglyLinkedList<TData> : IList<TData>
   }
 
   IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+  private bool IsOutOfRange(int index) => index < 0 || (index >= Count && Count != 0);
 }

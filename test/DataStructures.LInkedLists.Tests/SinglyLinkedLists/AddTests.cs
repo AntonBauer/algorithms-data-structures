@@ -12,7 +12,7 @@ public class AddTests
   {
     // Arrange
     var list = new SinglyLinkedList<int>();
-    
+
     // Act
     var items = list.ToArray();
 
@@ -26,14 +26,15 @@ public class AddTests
   public void AddItemTest()
   {
     // Arrange
-    var list = new SinglyLinkedList<int>();
-    
-    // Act
-    list.Add(1);
-    list.Add(2);
+    var list = new SinglyLinkedList<int>
+    {
+      1,
+      2
+    };
 
+    // Act
     var items = list.ToArray();
-    
+
     // Assert
     Assert.That(items, Contains.Item(1), "Does not contain expected 1");
     Assert.That(items, Contains.Item(2), "Does not contain expected 2");
