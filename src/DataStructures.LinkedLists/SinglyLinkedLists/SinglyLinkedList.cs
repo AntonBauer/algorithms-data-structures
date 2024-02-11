@@ -96,7 +96,7 @@ public class SinglyLinkedList<TData> : IList<TData>
 
   public void Insert(int index, TData item)
   {
-    if (IsOutOfRange(index))
+    if (index < 0 || (index >= Count && Count != 0))
       throw new ArgumentOutOfRangeException(nameof(index), index, "Index is out of range");
 
     if (index == 0)
@@ -121,10 +121,11 @@ public class SinglyLinkedList<TData> : IList<TData>
 
   public void RemoveAt(int index)
   {
-    if (IsOutOfRange(index))
+    if (index < 0 || index >= Count)
       throw new ArgumentOutOfRangeException(nameof(index), index, "Index is out of range");
 
     --Count;
+    
     throw new NotImplementedException();
   }
 
@@ -144,6 +145,4 @@ public class SinglyLinkedList<TData> : IList<TData>
   }
 
   IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-  private bool IsOutOfRange(int index) => index < 0 || (index >= Count && Count != 0);
 }
