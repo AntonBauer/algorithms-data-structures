@@ -148,7 +148,11 @@ public class SinglyLinkedList<TData> : IList<TData>
 
   public void CopyTo(TData[] array, int arrayIndex)
   {
-    throw new NotImplementedException();
+    if(arrayIndex + Count > array.Length)
+      throw new ArgumentOutOfRangeException(nameof(arrayIndex), arrayIndex, "Index is out of range");
+    
+    foreach(var item in this)
+      array[arrayIndex++] = item;
   }
 
   public IEnumerator<TData> GetEnumerator()
