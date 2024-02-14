@@ -9,7 +9,7 @@ public class SinglyLinkedList<TData> : IList<TData>
   public int Count { get; private set; }
 
   public bool IsReadOnly => false;
-  
+
   public TData this[int index]
   {
     get
@@ -24,7 +24,7 @@ public class SinglyLinkedList<TData> : IList<TData>
         currentItem = currentItem!.Next;
         ++currentIndex;
       }
-      
+
       return currentItem!.Data;
     }
     set => Insert(index, value);
@@ -35,7 +35,7 @@ public class SinglyLinkedList<TData> : IList<TData>
     _head = _head is null
       ? new Node<TData>(value, null)
       : new Node<TData>(value, _head);
-    
+
     ++Count;
   }
 
@@ -50,7 +50,7 @@ public class SinglyLinkedList<TData> : IList<TData>
       --Count;
       return true;
     }
-    
+
     var current = _head.Next;
     var previous = _head;
     while (current is not null)
@@ -68,7 +68,7 @@ public class SinglyLinkedList<TData> : IList<TData>
 
     return false;
   }
-  
+
   public void Clear()
   {
     _head = null;
@@ -81,7 +81,7 @@ public class SinglyLinkedList<TData> : IList<TData>
   {
     if (Count == 0)
       return -1;
-    
+
     var currentIndex = 0;
     var currentItem = _head;
     while (currentItem is not null)
@@ -106,7 +106,7 @@ public class SinglyLinkedList<TData> : IList<TData>
       Add(item);
       return;
     }
-    
+
     var current = _head;
     var currentIndex = 0;
 
@@ -126,16 +126,31 @@ public class SinglyLinkedList<TData> : IList<TData>
     if (index < 0 || index >= Count)
       throw new ArgumentOutOfRangeException(nameof(index), index, "Index is out of range");
 
+    if (index == 0)
+      _head = _head!.Next;
+    else
+    {
+      var prevItem = _head;
+      var currentItem = _head!.Next;
+      var currentIndex = 1;
+      while (currentIndex < index)
+      {
+        prevItem = currentItem;
+        currentItem = currentItem!.Next;
+        ++currentIndex;
+      }
+
+      prevItem!.Next = currentItem!.Next;
+    }
+
     --Count;
-    
-    throw new NotImplementedException();
   }
 
   public void CopyTo(TData[] array, int arrayIndex)
   {
     throw new NotImplementedException();
   }
-  
+
   public IEnumerator<TData> GetEnumerator()
   {
     var current = _head;
