@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solutionItems", "solutionIt
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.Trees", "src\DataStructures.Trees\DataStructures.Trees.csproj", "{057C1883-81F1-4094-AA76-284AA4BD4D38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.Trees.Tests", "test\DataStructures.Trees.Tests\DataStructures.Trees.Tests.csproj", "{CD43A91C-B564-4EDA-AFE3-130F3A469BF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,19 @@ Global
 		{7425942B-BBC8-4E61-9CAC-BC48B025BCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7425942B-BBC8-4E61-9CAC-BC48B025BCED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7425942B-BBC8-4E61-9CAC-BC48B025BCED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{057C1883-81F1-4094-AA76-284AA4BD4D38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{057C1883-81F1-4094-AA76-284AA4BD4D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{057C1883-81F1-4094-AA76-284AA4BD4D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057C1883-81F1-4094-AA76-284AA4BD4D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD43A91C-B564-4EDA-AFE3-130F3A469BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD43A91C-B564-4EDA-AFE3-130F3A469BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD43A91C-B564-4EDA-AFE3-130F3A469BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD43A91C-B564-4EDA-AFE3-130F3A469BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{922882C4-8934-4F26-AEBE-6693D286D0AD} = {5D6ED5A9-688E-41F7-8FEA-9709A762B952}
 		{7425942B-BBC8-4E61-9CAC-BC48B025BCED} = {ECAFD4A0-2ABB-403C-8B2D-6D39E62A1418}
+		{057C1883-81F1-4094-AA76-284AA4BD4D38} = {5D6ED5A9-688E-41F7-8FEA-9709A762B952}
+		{CD43A91C-B564-4EDA-AFE3-130F3A469BF2} = {ECAFD4A0-2ABB-403C-8B2D-6D39E62A1418}
 	EndGlobalSection
 EndGlobal
