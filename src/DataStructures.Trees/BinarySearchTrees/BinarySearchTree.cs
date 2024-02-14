@@ -4,7 +4,7 @@ namespace DataStructures.Trees.BinarySearchTrees;
 
 public class BinarySearchTree<TData> : ICollection<TData>
 {
-  private Comparer<TData> _comparer;
+  private readonly Comparer<TData> _comparer;
   private Node<TData>? _root;
   
   public int Count { get; private set; }

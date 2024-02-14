@@ -1,11 +1,12 @@
 ﻿namespace DataStructures.Trees.BinarySearchTrees;
 
-public record Node<TData>(TData Data, Node<TData>? Parent, Node<TData>? Left, Node<TData>? Right)
+internal record Node<TData>(TData Data, Node<TData>? Parent, Node<TData>? Left, Node<TData>? Right)
 {
   public readonly TData Data = Data;
-  public Node<TData>? Parent { get; set; } = Parent;
-  public Node<TData>? Left { get; set; } = Left;
-  public Node<TData>? Right { get; set; } = Right;
+  
+  public Node<TData>? Parent { get; private set; } = Parent;
+  public Node<TData>? Left { get; private set; } = Left;
+  public Node<TData>? Right { get; private set; } = Right;
 
   public void Add(TData data, Comparer<TData> comparer)
   {
