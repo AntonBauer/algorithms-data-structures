@@ -35,7 +35,7 @@ public class BinarySearchTree<TData> : ICollection<TData>
     var current = _root;
     while (true)
     {
-      if (_comparer.Compare(current!.Data, item) > 0)
+      if (_comparer.Compare(current!.Data, item) >= 0)
       {
         if (current.Left is null)
         {
@@ -66,16 +66,65 @@ public class BinarySearchTree<TData> : ICollection<TData>
     Count = 0;
   }
 
-  public bool Contains(TData item) => throw new NotImplementedException();
+  public bool Contains(TData item)
+  {
+    if (Count == 0)
+      return false;
+
+    var current = _root;
+    while (current is not null)
+    {
+      var comparison = _comparer.Compare(current.Data, item);
+      if (comparison == 0)
+        return true;
+
+      current = comparison >= 0
+        ? current.Left
+        : current.Right;
+    }
+
+    return false;
+  }
 
   public void CopyTo(TData[] array, int arrayIndex)
   {
-    throw new NotImplementedException();
+    if (arrayIndex + Count > array.Length)
+      throw new ArgumentOutOfRangeException(nameof(arrayIndex), arrayIndex, "The index is out of range");
+
+    foreach (var item in this)
+      array[arrayIndex++] = item;
   }
 
   public bool Remove(TData item) => throw new NotImplementedException();
 
-  public IEnumerator<TData> GetEnumerator() => throw new NotImplementedException();
+  public IEnumerator<TData> GetEnumerator()
+  {
+    if (Count == 0)
+      yield break;
+
+    foreach(var item in GetNodeData(_root!))
+      yield return item;
+  }
 
   IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+  private static TData[] GetNodeData(Node<TData> node)
+  {
+    var left = node.Left is not null
+      ? GetNodeData(node.Left)
+      : Array.Empty<TData>();
+    
+    var current = new[] { node.Data };
+
+    var right = node.Right is not null
+      ? GetNodeData(node.Right)
+      : Array.Empty<TData>();
+
+    var result = new TData[left.Length + current.Length + right.Length];
+    left.CopyTo(result, 0);
+    current.CopyTo(result, left.Length);
+    right.CopyTo(result, left.Length + current.Length);
+
+    return result;
+  }
 }
