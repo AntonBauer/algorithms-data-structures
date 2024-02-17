@@ -19,6 +19,7 @@ public class ClearTests
     // Assert
     Assert.That(tree, Is.Empty);
   }
+  
   [Test(TestOf = typeof(BinarySearchTree<>))]
   [Category("Data structures")]
   [Category("Trees")]

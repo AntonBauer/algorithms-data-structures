@@ -71,19 +71,7 @@ public class BinarySearchTree<TData> : ICollection<TData>
     if (Count == 0)
       return false;
 
-    var current = _root;
-    while (current is not null)
-    {
-      var comparison = _comparer.Compare(current.Data, item);
-      if (comparison == 0)
-        return true;
-
-      current = comparison >= 0
-        ? current.Left
-        : current.Right;
-    }
-
-    return false;
+    return FindNodeContaining(item) is not null;
   }
 
   public void CopyTo(TData[] array, int arrayIndex)
@@ -95,7 +83,42 @@ public class BinarySearchTree<TData> : ICollection<TData>
       array[arrayIndex++] = item;
   }
 
-  public bool Remove(TData item) => throw new NotImplementedException();
+  public bool Remove(TData item)
+  {
+    if (Count == 0)
+      return false;
+    
+    var node = FindNodeContaining(item);
+    if (node is null)
+      return false;
+
+    if (!node.HasChildren())
+    {
+      if (node.IsLeftChild())
+        node.Parent!.Left = null;
+      else
+        node.Parent!.Right = null;
+
+      return true;
+    }
+
+    if (node.HasBothChildren())
+    {
+      var successor = FindSuccessorOf(node);
+      throw new NotImplementedException();
+    }
+
+    var child = node.Left ?? node.Right;
+
+    if (node.IsLeftChild())
+      node.Parent!.Left = child;
+    else
+      node.Parent!.Right = child;
+
+    child!.Parent = node.Parent;
+
+    return true;
+  }
 
   public IEnumerator<TData> GetEnumerator()
   {
@@ -108,6 +131,25 @@ public class BinarySearchTree<TData> : ICollection<TData>
 
   IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+  private Node<TData>? FindNodeContaining(TData item)
+  {
+    var current = _root;
+    while (current is not null)
+    {
+      var comparison = _comparer.Compare(current.Data, item);
+      if (comparison == 0)
+        return current;
+
+      current = comparison >= 0
+        ? current.Left
+        : current.Right;
+    }
+
+    return null;
+  }
+
+  private Node<TData> FindSuccessorOf(Node<TData> node) => throw new NotImplementedException();
+  
   private static TData[] GetNodeData(Node<TData> node)
   {
     var left = node.Left is not null
