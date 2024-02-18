@@ -13,11 +13,15 @@ public class AddTests
     // Arrange
     var tree = new BinarySearchTree<int>
     {
-      5
+      5,
+      3,
+      8,
+      9,
+      7
     };
 
     // Assert
-    Assert.That(tree, Does.Contain(5));
+    Assert.That(tree, Does.Contain(7));
   }
 
   [Test(TestOf = typeof(BinarySearchTree<>))]

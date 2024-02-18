@@ -29,8 +29,11 @@ public class BinarySearchTree<TData> : ICollection<TData>
   public void Add(TData item)
   {
     if (Count == 0)
+    {
       _root = new Node<TData>(item, null, null, null);
-
+      ++Count;
+      return;
+    }
 
     var current = _root;
     while (true)
@@ -87,36 +90,13 @@ public class BinarySearchTree<TData> : ICollection<TData>
   {
     if (Count == 0)
       return false;
-    
+
     var node = FindNodeContaining(item);
     if (node is null)
       return false;
 
-    if (!node.HasChildren())
-    {
-      if (node.IsLeftChild())
-        node.Parent!.Left = null;
-      else
-        node.Parent!.Right = null;
-
-      return true;
-    }
-
-    if (node.HasBothChildren())
-    {
-      var successor = FindSuccessorOf(node);
-      throw new NotImplementedException();
-    }
-
-    var child = node.Left ?? node.Right;
-
-    if (node.IsLeftChild())
-      node.Parent!.Left = child;
-    else
-      node.Parent!.Right = child;
-
-    child!.Parent = node.Parent;
-
+    RemoveNode(node);
+    --Count;
     return true;
   }
 
@@ -125,7 +105,8 @@ public class BinarySearchTree<TData> : ICollection<TData>
     if (Count == 0)
       yield break;
 
-    foreach(var item in GetNodeData(_root!))
+    var data = GetNodeData(_root!);
+    foreach (var item in GetNodeData(_root!))
       yield return item;
   }
 
@@ -148,14 +129,80 @@ public class BinarySearchTree<TData> : ICollection<TData>
     return null;
   }
 
-  private Node<TData> FindSuccessorOf(Node<TData> node) => throw new NotImplementedException();
-  
+  private static void RemoveNode(Node<TData> node)
+  {
+    if (node.HasNoChildren())
+      node.DisjointFromParent();
+    else if (node.HasBothChildren())
+      RemoveNodeWithBothChildren(node);
+    else
+      RemoveNodeWithOnlyChild(node);
+  }
+
+  private static void RemoveNodeWithBothChildren(Node<TData> node)
+  {
+    if (node.Left is null || node.Right is null)
+      throw new Exception("Node must have both children");
+
+    var successor = FindSuccessorOf(node);
+    if (successor is null)
+      throw new Exception("Successor not found");
+
+    var parent = node.Parent;
+    
+    if (node.IsLeftChild())
+      parent.SetLeft(successor);
+    else
+      parent.SetRight(successor);
+
+    successor.SetLeft(node.Left);
+    successor.SetRight(node.Right);
+  }
+
+  private static void RemoveNodeWithOnlyChild(Node<TData> node)
+  {
+    var child = node.Left ?? node.Right;
+    if (node.Left is not null && node.Right is not null || child is null)
+      throw new Exception("Node should have exactly one child");
+
+    if (node.IsLeftChild())
+      node.Parent.SetLeft(child);
+    else
+      node.Parent.SetRight(child);
+  }
+
+
+  private static Node<TData>? FindSuccessorOf(Node<TData> node)
+  {
+    if (node.Right is not null)
+      return FindMinimumFrom(node.Right);
+
+    var current = node;
+    var parent = current.Parent;
+    while (parent is not null && current == parent.Right)
+    {
+      current = parent;
+      parent = current.Parent;
+    }
+
+    return parent;
+  }
+
+  private static Node<TData> FindMinimumFrom(Node<TData> node)
+  {
+    var current = node;
+    while (current.Left is not null)
+      current = current.Left;
+
+    return current;
+  }
+
   private static TData[] GetNodeData(Node<TData> node)
   {
     var left = node.Left is not null
       ? GetNodeData(node.Left)
       : Array.Empty<TData>();
-    
+
     var current = new[] { node.Data };
 
     var right = node.Right is not null

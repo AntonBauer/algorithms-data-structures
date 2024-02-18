@@ -10,7 +10,34 @@ internal record Node<TData>(TData Data, Node<TData>? Parent, Node<TData>? Left, 
 
   public bool IsLeftChild() => Parent?.Left == this;
 
-  public bool HasChildren() => Left is not null || Right is not null;
+  public bool HasNoChildren() => Left is null && Right is null;
 
   public bool HasBothChildren() => Left is not null && Right is not null;
+
+  public void SetLeft(Node<TData> newLeft)
+  {
+    newLeft.DisjointFromParent();
+
+    Left = newLeft;
+    newLeft.Parent = this;
+  }
+
+  public void SetRight(Node<TData> newRight)
+  {
+    newRight.DisjointFromParent();
+
+    Right = newRight;
+    newRight.Parent = this;
+  }
+
+  public void DisjointFromParent()
+  {
+    if (Parent is null)
+      return;
+
+    if (IsLeftChild())
+      Parent.Left = null;
+    else
+      Parent.Right = null;
+  }
 }
