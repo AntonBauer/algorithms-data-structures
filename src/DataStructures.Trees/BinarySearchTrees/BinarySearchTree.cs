@@ -1,10 +1,11 @@
 ﻿using System.Collections;
+using System.Reflection;
 
 namespace DataStructures.Trees.BinarySearchTrees;
 
 public class BinarySearchTree<TData> : ICollection<TData>
 {
-  private readonly Comparer<TData> _comparer;
+  private readonly Comparison<TData> _comparison;
 
   private Node<TData>? _root;
 
@@ -18,14 +19,9 @@ public class BinarySearchTree<TData> : ICollection<TData>
 
   public BinarySearchTree(IComparer<TData> comparer)
   {
-    var dataType = typeof(TData);
-
-    // ToDo: create comparer delegate
-    // dataType.GetMethod(nameof(IComparable<TData>.CompareTo)).CreateDelegate()
-
-    _comparer = dataType.IsAssignableTo(typeof(IComparable<TData>))
-      ? Comparer<TData>.Default
-      : Comparer<TData>.Create(comparer.Compare);
+    _comparison = typeof(TData).IsAssignableTo(typeof(IComparable<TData>))
+      ? (TData first, TData second) => (first as IComparable<TData>)!.CompareTo(second)
+      : comparer.Compare;
   }
 
   public void Add(TData item)
@@ -40,7 +36,7 @@ public class BinarySearchTree<TData> : ICollection<TData>
     var current = _root;
     while (true)
     {
-      if (_comparer.Compare(current!.Data, item) >= 0)
+      if (_comparison(current!.Data, item) >= 0)
       {
         if (current.Left is null)
         {
@@ -118,7 +114,7 @@ public class BinarySearchTree<TData> : ICollection<TData>
     var current = _root;
     while (current is not null)
     {
-      var comparison = _comparer.Compare(current.Data, item);
+      var comparison = _comparison(current.Data, item);
       if (comparison == 0)
         return current;
 
