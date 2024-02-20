@@ -17,6 +17,7 @@ public class RemoveTests
 
     // Assert
     Assert.That(result, Is.False);
+    Assert.That(tree, Is.EqualTo(new int[] { 42, 8, 23, 16, 15, 4 }));
   }
 
   [Test(TestOf = typeof(BinarySearchTree<>))]
@@ -32,6 +33,7 @@ public class RemoveTests
 
     // Assert
     Assert.That(result, Is.True);
+    Assert.That(tree, Is.EqualTo(new int[] { 4, 8, 15, 16, 42 }));
   }
 
   [Test(TestOf = typeof(BinarySearchTree<>))]
