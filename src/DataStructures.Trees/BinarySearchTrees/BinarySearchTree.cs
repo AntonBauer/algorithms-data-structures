@@ -5,6 +5,7 @@ namespace DataStructures.Trees.BinarySearchTrees;
 public class BinarySearchTree<TData> : ICollection<TData>
 {
   private readonly Comparer<TData> _comparer;
+
   private Node<TData>? _root;
 
   public int Count { get; private set; }
@@ -18,6 +19,7 @@ public class BinarySearchTree<TData> : ICollection<TData>
   public BinarySearchTree(IComparer<TData> comparer)
   {
     var dataType = typeof(TData);
+
     // ToDo: create comparer delegate
     // dataType.GetMethod(nameof(IComparable<TData>.CompareTo)).CreateDelegate()
 
@@ -105,7 +107,6 @@ public class BinarySearchTree<TData> : ICollection<TData>
     if (Count == 0)
       yield break;
 
-    var data = GetNodeData(_root!);
     foreach (var item in GetNodeData(_root!))
       yield return item;
   }
@@ -129,17 +130,22 @@ public class BinarySearchTree<TData> : ICollection<TData>
     return null;
   }
 
-  private static void RemoveNode(Node<TData> node)
+  private void RemoveNode(Node<TData> node)
   {
     if (node.HasNoChildren())
-      node.DisjointFromParent();
+    {
+      if (node == _root)
+        _root = null;
+      else
+        node.DisjointFromParent();
+    }
     else if (node.HasBothChildren())
       RemoveNodeWithBothChildren(node);
     else
       RemoveNodeWithOnlyChild(node);
   }
 
-  private static void RemoveNodeWithBothChildren(Node<TData> node)
+  private void RemoveNodeWithBothChildren(Node<TData> node)
   {
     if (node.Left is null || node.Right is null)
       throw new Exception("Node must have both children");
@@ -149,21 +155,31 @@ public class BinarySearchTree<TData> : ICollection<TData>
       throw new Exception("Successor not found");
 
     var parent = node.Parent;
-    
-    if (node.IsLeftChild())
-      parent.SetLeft(successor);
+    if (parent is not null)
+    {
+      if (node.IsLeftChild())
+        parent.SetLeft(successor);
+      else
+        parent.SetRight(successor);
+    }
     else
-      parent.SetRight(successor);
+      _root = node;
 
     successor.SetLeft(node.Left);
     successor.SetRight(node.Right);
   }
 
-  private static void RemoveNodeWithOnlyChild(Node<TData> node)
+  private void RemoveNodeWithOnlyChild(Node<TData> node)
   {
     var child = node.Left ?? node.Right;
     if (node.Left is not null && node.Right is not null || child is null)
       throw new Exception("Node should have exactly one child");
+
+    if (node.Parent is null)
+    {
+      _root = child;
+      return;
+    }
 
     if (node.IsLeftChild())
       node.Parent.SetLeft(child);
