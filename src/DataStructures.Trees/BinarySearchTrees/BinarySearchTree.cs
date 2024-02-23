@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Reflection;
+using System.Collections.Generic;
 
 namespace DataStructures.Trees.BinarySearchTrees;
 
@@ -13,15 +13,21 @@ public class BinarySearchTree<TData> : ICollection<TData>
 
   public bool IsReadOnly => false;
 
-  public BinarySearchTree() : this(Comparer<TData>.Default)
+  public BinarySearchTree()
   {
+    _comparison = typeof(TData).IsAssignableTo(typeof(IComparable<TData>))
+      ? (TData first, TData second) => (first as IComparable<TData>)!.CompareTo(second)
+      : Comparer<TData>.Default.Compare;
   }
 
   public BinarySearchTree(IComparer<TData> comparer)
   {
-    _comparison = typeof(TData).IsAssignableTo(typeof(IComparable<TData>))
-      ? (TData first, TData second) => (first as IComparable<TData>)!.CompareTo(second)
-      : comparer.Compare;
+    _comparison = comparer.Compare;
+  }
+
+  public BinarySearchTree(Comparison<TData> comparison)
+  {
+    _comparison = comparison;
   }
 
   public void Add(TData item)
