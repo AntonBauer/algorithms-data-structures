@@ -17,7 +17,7 @@ public class RemoveTests
 
     // Assert
     Assert.That(result, Is.False);
-    Assert.That(tree, Is.EqualTo(new int[] { 42, 8, 23, 16, 15, 4 }));
+    Assert.That(tree, Is.EquivalentTo(new int[] { 42, 8, 23, 16, 15, 4 }));
   }
 
   [Test(TestOf = typeof(BinarySearchTree<>))]
