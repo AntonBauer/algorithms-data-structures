@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5D6ED5A9-688
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{ECAFD4A0-2ABB-403C-8B2D-6D39E62A1418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.LInkedLists.Tests", "test\DataStructures.LInkedLists.Tests\DataStructures.LInkedLists.Tests.csproj", "{7425942B-BBC8-4E61-9CAC-BC48B025BCED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.LinkedLists.Tests", "test\DataStructures.LInkedLists.Tests\DataStructures.LinkedLists.Tests.csproj", "{7425942B-BBC8-4E61-9CAC-BC48B025BCED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solutionItems", "solutionItems", "{059274B4-C768-4F37-A105-9CCA8E65CCF9}"
 	ProjectSection(SolutionItems) = preProject
@@ -28,9 +28,6 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{922882C4-8934-4F26-AEBE-6693D286D0AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -57,6 +54,9 @@ Global
 		{DC034ACD-69D0-4363-A6C1-8E2A1C562A09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC034ACD-69D0-4363-A6C1-8E2A1C562A09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC034ACD-69D0-4363-A6C1-8E2A1C562A09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{922882C4-8934-4F26-AEBE-6693D286D0AD} = {5D6ED5A9-688E-41F7-8FEA-9709A762B952}
