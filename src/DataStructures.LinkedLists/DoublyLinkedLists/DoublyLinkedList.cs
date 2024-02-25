@@ -106,8 +106,13 @@ public class DoublyLinkedList<TData> : IList<TData>
     }
 
     var newNode = new Node<TData>(item, current, current!.Next);
-    current.Next = newNode;
-    current.Next.Prev = newNode;
+    if (current.Next is null)
+      current.Next = newNode;
+    else
+    {
+      current.Next.Prev = newNode;
+      current.Next = newNode;
+    }
 
     ++Count;
   }
