@@ -21,7 +21,7 @@ public class AddTests
       Assert.That(list[1], Is.EqualTo(2));
     });
   }
-  // Can add an item to a list with existing items
+
   [Test]
   [Category("Data structures")]
   [Category("Lists")]
