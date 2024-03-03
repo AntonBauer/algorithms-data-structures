@@ -6,8 +6,8 @@ public static class CountingSortExtensions
   {
     if (array.Length < 2)
       return [.. array];
-    
-    var intArray = array.Select(intMap).ToArray();
+
+    var intArray = array.CreateIntegersArray(intMap);
     var countingArray = intArray.CreateCountingArray();
     var outputArray = new T[array.Length];
 
@@ -33,5 +33,14 @@ public static class CountingSortExtensions
     Array.Fill(countingArray, 0);
 
     return countingArray;
+  }
+
+  private static int[] CreateIntegersArray<T>(this T[] array, Func<T, int> intMap)
+  {
+    var intArray = new int[array.Length];
+    for (var i = 0; i < intArray.Length; i++)
+      intArray[i] = intMap(array[i]);
+
+    return intArray;
   }
 }
