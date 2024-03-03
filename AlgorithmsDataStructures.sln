@@ -28,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "benchmarks\Algorithms\Algorithms.csproj", "{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.SuffixArrays", "src\DataStructures.SuffixArrays\DataStructures.SuffixArrays.csproj", "{D93655FA-EBFA-45D6-8C33-C5D835F01974}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.SuffixArray.Tests", "test\DataStructures.SuffixArrays.Tests\DataStructures.SuffixArray.Tests.csproj", "{9AC08EA4-A8C5-41F4-B969-7C98F4632A02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +66,14 @@ Global
 		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D93655FA-EBFA-45D6-8C33-C5D835F01974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93655FA-EBFA-45D6-8C33-C5D835F01974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93655FA-EBFA-45D6-8C33-C5D835F01974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93655FA-EBFA-45D6-8C33-C5D835F01974}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AC08EA4-A8C5-41F4-B969-7C98F4632A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AC08EA4-A8C5-41F4-B969-7C98F4632A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AC08EA4-A8C5-41F4-B969-7C98F4632A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AC08EA4-A8C5-41F4-B969-7C98F4632A02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,5 +86,7 @@ Global
 		{7CEE54A2-3A89-4B54-B7EF-ACEA540CE44A} = {5D6ED5A9-688E-41F7-8FEA-9709A762B952}
 		{DC034ACD-69D0-4363-A6C1-8E2A1C562A09} = {ECAFD4A0-2ABB-403C-8B2D-6D39E62A1418}
 		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB} = {E4969F86-9BF8-4B92-8EAB-16F68FFAA1C8}
+		{D93655FA-EBFA-45D6-8C33-C5D835F01974} = {5D6ED5A9-688E-41F7-8FEA-9709A762B952}
+		{9AC08EA4-A8C5-41F4-B969-7C98F4632A02} = {ECAFD4A0-2ABB-403C-8B2D-6D39E62A1418}
 	EndGlobalSection
 EndGlobal
