@@ -31,16 +31,17 @@ public class AddTests
     var list = new DoublyLinkedList<int>
     {
         1,
-        2
+        2,
+        3
     };
 
-    // Act
-    list.Add(3);
-
     // Assert
-    Assert.That(list.Count, Is.EqualTo(3), "Count is incorrect");
-    Assert.That(list[0], Is.EqualTo(1), "Item at index 0 is incorrect");
-    Assert.That(list[1], Is.EqualTo(2), "Item at index 1 is incorrect");
-    Assert.That(list[2], Is.EqualTo(3), "Item at index 2 is incorrect");
+    Assert.Multiple(() =>
+    {
+      Assert.That(list.Count, Is.EqualTo(3), "Count is incorrect");
+      Assert.That(list[0], Is.EqualTo(1), "Item at index 0 is incorrect");
+      Assert.That(list[1], Is.EqualTo(2), "Item at index 1 is incorrect");
+      Assert.That(list[2], Is.EqualTo(3), "Item at index 2 is incorrect");
+    });
   }
 }

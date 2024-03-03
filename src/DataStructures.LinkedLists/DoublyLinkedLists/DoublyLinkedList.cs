@@ -24,7 +24,21 @@ public class DoublyLinkedList<TData> : IList<TData>
 
       return currentItem!.Data;
     }
-    set => Insert(index, value);
+    set
+    {
+      if (index < 0 || index >= Count)
+        throw new ArgumentOutOfRangeException(nameof(index), index, "Index is out of range");
+
+      var currentIndex = 0;
+      var currentItem = _head;
+      while (currentIndex < index)
+      {
+        currentItem = currentItem!.Next;
+        ++currentIndex;
+      }
+
+      currentItem!.Data = value;
+    }
   }
 
   public int Count { get; private set; }
@@ -107,7 +121,10 @@ public class DoublyLinkedList<TData> : IList<TData>
 
     var newNode = new Node<TData>(item, current, current!.Next);
     if (current.Next is null)
+    {
       current.Next = newNode;
+      _tail = current;
+    }
     else
     {
       current.Next.Prev = newNode;
@@ -146,7 +163,7 @@ public class DoublyLinkedList<TData> : IList<TData>
     var currentIndex = 0;
     while (currentIndex < index)
     {
-      currentItem = _head!.Next;
+      currentItem = currentItem!.Next;
       ++currentIndex;
     }
 
@@ -158,9 +175,34 @@ public class DoublyLinkedList<TData> : IList<TData>
   private void Remove(Node<TData> node)
   {
     if (node.Prev is not null)
+    {
       node.Prev.Next = node.Next;
+      if (node.Prev.Next is null)
+        _tail = node.Prev;
+    }
+    else
+    {
+      _head = node.Next;
+      if (_head is null)
+        _tail = null;
+      else
+        _head.Prev = null;
+    }
+
     if (node.Next is not null)
+    {
       node.Next.Prev = node.Prev;
+      if (node.Next.Prev is null)
+        _head = node.Next;
+    }
+    else
+    {
+      _tail = node.Prev;
+      if (_tail is null)
+        _head = null;
+      else
+        _tail.Next = null;
+    }
 
     --Count;
   }
