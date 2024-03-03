@@ -8,7 +8,7 @@ public static class RadixSortExtensions
   /// <param name="array">Array to sort</param>
   /// <param name="passes">Radix passes</param>
   /// <returns></returns>
-  public static int[] RadixSort(this int[] array, params Func<int, int>[] passes)
+  public static T[] RadixSort<T>(this T[] array, params Func<T, int>[] passes)
   {
     if (array.Length < 2)
       return [.. array];
@@ -16,8 +16,7 @@ public static class RadixSortExtensions
     var sorted = array.ToArray();
 
     foreach (var pass in passes)
-    {
-    }
+      sorted = sorted.CountingSort(pass);
 
     return sorted;
   }
