@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms.Sorting", "src\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms.Sorting.Tests", "test\Algorithms.Sorting.Tests\Algorithms.Sorting.Tests.csproj", "{DC034ACD-69D0-4363-A6C1-8E2A1C562A09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{E4969F86-9BF8-4B92-8EAB-16F68FFAA1C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "benchmarks\Algorithms\Algorithms.csproj", "{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +58,10 @@ Global
 		{DC034ACD-69D0-4363-A6C1-8E2A1C562A09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC034ACD-69D0-4363-A6C1-8E2A1C562A09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC034ACD-69D0-4363-A6C1-8E2A1C562A09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +73,6 @@ Global
 		{CD43A91C-B564-4EDA-AFE3-130F3A469BF2} = {ECAFD4A0-2ABB-403C-8B2D-6D39E62A1418}
 		{7CEE54A2-3A89-4B54-B7EF-ACEA540CE44A} = {5D6ED5A9-688E-41F7-8FEA-9709A762B952}
 		{DC034ACD-69D0-4363-A6C1-8E2A1C562A09} = {ECAFD4A0-2ABB-403C-8B2D-6D39E62A1418}
+		{2AB08C96-8FBB-4DE7-85E8-E0DBCC4B37EB} = {E4969F86-9BF8-4B92-8EAB-16F68FFAA1C8}
 	EndGlobalSection
 EndGlobal
