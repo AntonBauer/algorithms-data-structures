@@ -24,9 +24,9 @@ public class CountingSortBenchmark
   }
 
   [Benchmark]
-  public int[] CountingSort() => data.ToArray().CountingSort(i => i);
+  public int[] CountingSort() => data.ToArray().CountingSort();
 
-  [Benchmark]
+  [Benchmark(Baseline = true)]
   public int[] BuiltInSort()
   {
     var toSort = data.ToArray();
